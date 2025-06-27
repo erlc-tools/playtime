@@ -1,8 +1,9 @@
-require('dotenv').config()
+import { Client } from "erlc";
+import * as dotenv from "dotenv";
+dotenv.config()
 
-const erlc = require('erlc')
-const client = new erlc.Client({
-	globalToken: process.env.tkn
+const client = new Client({
+	globalToken: process.env.tkn as string
 })
 client.config() // save options
 
