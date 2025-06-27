@@ -15,11 +15,17 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
     devDependencies:
+      '@types/node':
+        specifier: ^24.0.6
+        version: 24.0.6
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
 
 packages:
+
+  '@types/node@24.0.6':
+    resolution: {integrity: sha512-ZOyn+gOs749xU7ovp+Ibj0g1o3dFRqsfPnT22C2t5JzcRvgsEDpGawPbCISGKLudJk9Y0wiu9sYd6kUh0pc9TA==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -54,11 +60,18 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  undici-types@7.8.0:
+    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
+
   web-streams-polyfill@3.3.3:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
     engines: {node: '>= 8'}
 
 snapshots:
+
+  '@types/node@24.0.6':
+    dependencies:
+      undici-types: 7.8.0
 
   data-uri-to-buffer@4.0.1: {}
 
@@ -86,5 +99,7 @@ snapshots:
       formdata-polyfill: 4.0.10
 
   typescript@5.8.3: {}
+
+  undici-types@7.8.0: {}
 
   web-streams-polyfill@3.3.3: {}
