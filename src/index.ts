@@ -42,6 +42,7 @@ const SPtoP = (SP: erlc.ServerPlayer): Player => {
 };
 
 const massSPtoP = (SPs: erlc.ServerPlayer[]): Player[] => {
+	if (debug) {log.info("hello from massSPtoP")}
 	let temp: Player[] = [];
 	SPs.forEach(item => {
 		temp.push(SPtoP(item));
@@ -50,11 +51,12 @@ const massSPtoP = (SPs: erlc.ServerPlayer[]): Player[] => {
 };
 
 const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
+	if (debug) {log.info("hello from getPlayers")}
 	return await erlc.getPlayers(token);
 };
 
 
-
+log.info("getting players")
 getPlayers().then((res: erlc.ServerPlayer[]) => {
 	console.log(massSPtoP(res));
 })
