@@ -43,8 +43,12 @@ const SPtoP = (SP: erlc.ServerPlayer): Player => {
 };
 
 const massSPtoP = (SPs: erlc.ServerPlayer[]): Player[] => {
-	if (debug) {log.info("hello from massSPtoP")}
-	let temp: Player[] = [];
+	if (debug) {log.info("hello from massSPtoP")};
+
+	var temp: Player[] = [];
+
+	if (debug) {log.debug(["massSPtoP vars & args", SPs, temp])};
+
 	SPs.forEach(item => {
 		temp.push(SPtoP(item));
 	});
