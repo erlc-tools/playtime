@@ -10,9 +10,14 @@ dotenv.config()
 let players: number[]
 const token = process.env.tkn as string
 
-const debug = process.env.debug; // DEBUG
+const debug_pre = process.env.debug as string;
+var debug = false as boolean // fuck compiler errors
+if (debug_pre == "true") { const debug = true } else { const debug = false }
+
 
 const log = new Logger();
+
+log.info(`DEBUG IS ${debug}`)
 
 
 const client = new erlc.Client({
@@ -20,7 +25,7 @@ const client = new erlc.Client({
 });
 client.config(); // save options
 
-if (debug) {
+if (debug === false) {
 	log.info(["tkn passed in=", token])
 }
 
@@ -63,5 +68,5 @@ const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
 
 log.info("getting players")
 getPlayers().then((res: erlc.ServerPlayer[]) => {
-	console.log(massSPtoP(res));
+	log.info(massSPtoP(res));
 })
