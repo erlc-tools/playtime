@@ -6,16 +6,42 @@ const token = process.env.tkn as string
 
 
 const client = new erlc.Client({
-	globalToken: process.env.tkn as string
+	globalToken: process.env.ratelimit as string
 })
 client.config() // save options
 
+console.debug(token)
 
-const getPlayers = async () => {
-	const atlast = () => {
-		console.log("sigma")
-	}
-	const res = await erlc.getPlayers(token).catch(console.log)
-	return res
+type Player = {
+	name: string,
+	id: number
 }
 
+const SPtoP = (SP: erlc.ServerPlayer): Player => {
+	let name = "" as string;
+	let id = 0 as number;
+
+	name = SP.Player.split(":")[0] as string
+	id = parseInt(SP.Player.split(":")[0]) as number
+
+	const playerobj = {name: name, id: id} as Player;
+	return playerobj;
+};
+
+const massSPtoP = (SPs: erlc.ServerPlayer[]): Player[] => {
+	let temp: Player[] = [];
+	SPs.forEach(item => {
+		temp.push(SPtoP(item));
+	});
+	return temp;
+};
+
+const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
+	return await erlc.getPlayers(token);
+};
+
+
+
+getPlayers().then((res: erlc.ServerPlayer[]) => {
+	console.log(massSPtoP(res));
+})
