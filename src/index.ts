@@ -12,13 +12,20 @@ const token = process.env.tkn as string
 
 const debug = true; // DEBUG
 
+if ( debug == true ) {
+	const logger = new Logger();
+}
+
 
 const client = new erlc.Client({
 	globalToken: process.env.ratelimit as string
 })
 client.config() // save options
 
-console.debug(token)
+if ( debug == true ) {
+	console.debug(token)
+}
+
 
 type Player = {
 	name: string,
