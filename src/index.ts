@@ -11,8 +11,8 @@ let players: number[]
 const token = process.env.tkn as string
 
 const debug_pre = process.env.debug as string;
-var debug = false as boolean // fuck compiler errors
-if (debug_pre == "true") { const debug = true } else { const debug = false }
+var debug = false as boolean; // fuck compiler errors
+if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 
 const log = new Logger();
