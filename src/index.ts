@@ -31,6 +31,7 @@ type Player = {
 }
 
 const SPtoP = (SP: erlc.ServerPlayer): Player => {
+	if (debug) {log.info("hello from SPtoP")}
 	let name = "" as string;
 	let id = 0 as number;
 
