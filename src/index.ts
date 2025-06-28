@@ -1,8 +1,16 @@
+// imports
 import * as erlc from "erlc";
 import * as dotenv from "dotenv";
+import { Logger } from "tslog"; // required if debug = true
+
+// post-imports
 dotenv.config()
+
+// vars
 let players: number[]
 const token = process.env.tkn as string
+
+const debug = true; // DEBUG
 
 
 const client = new erlc.Client({
