@@ -1,7 +1,7 @@
 // imports
 import * as erlc from "erlc";
 import * as dotenv from "dotenv";
-import { Logger } from "tslog"; // required if debug = true
+import { Logger } from "tslog"; 
 
 // post-imports
 dotenv.config()
@@ -10,20 +10,18 @@ dotenv.config()
 let players: number[]
 const token = process.env.tkn as string
 
-const debug = true; // DEBUG
+const debug = process.env.debug; // DEBUG
 
-if ( debug == true ) {
-	const logger = new Logger();
-}
+const log = new Logger();
 
 
 const client = new erlc.Client({
 	globalToken: process.env.ratelimit as string
-})
-client.config() // save options
+});
+client.config(); // save options
 
-if ( debug == true ) {
-	console.debug(token)
+if (debug) {
+	log.info(["tkn passed in=", token])
 }
 
 
