@@ -13,7 +13,7 @@ if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 const log = new Logger();
 export const dbpath = process.env.dbpath as string;
-export let db = undefined; // undefined until dbfiles are checked
+export let db = undefined as undefined | Datastore<PlaytimeDB>; // undefined until dbfiles are checked
 
 type Userlog = {
     id: number,
@@ -52,6 +52,7 @@ export async function checkdbfile(): Promise<void> {
     if ( res === false ) {
         createdbfile();
     };
+    db = Datastore.create(dbpath)
     return;
 };
 
