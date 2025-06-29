@@ -15,6 +15,19 @@ const log = new Logger();
 export const dbpath = process.env.dbpath as string;
 export let db = undefined; // undefined until dbfiles are checked
 
+type Userlog = {
+    id: number,
+    times: number
+};
+
+type Intervallog = {
+    interval: number
+};
+
+type PlaytimeDB = {
+    u: Userlog | undefined,
+    i: Intervallog | undefined
+};
 
 export async function fileExists(path: string): Promise<boolean> {
     if (debug === true) { log.debug("hello from fileExists!") };
