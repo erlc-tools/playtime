@@ -64,7 +64,7 @@ export async function checkdbfile(): Promise<void> {
     return;
 };
 
-export function createIntervalLog(): Intervallog {
+export async function createIntervalLog(): Promise<Intervallog> {
     return {"interval": 1}; // placeholder (not finished)
 }
 
@@ -74,8 +74,8 @@ export async function dblog(uid: number, interval: number) {
         process.exit(1);
     }
     //check if interval var matches
-    let ilog = db.findOne({t: "i"})
+    let ilog = db.findOne({t: "i"}) as Promise<Intervallog>;
     if (!ilog) {
-        createIntervalLog(); // sync
+        ilog = createIntervalLog(); // sync
     }
 }
