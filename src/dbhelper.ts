@@ -11,7 +11,7 @@ if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 
 const log = new Logger();
-const dbpath = path.join()
+const dbpath = process.env.dbpath as string;
 
 
 async function fileExists(path: string): Promise<boolean> {
@@ -24,5 +24,10 @@ async function fileExists(path: string): Promise<boolean> {
 }
 
 const checkdbfile = () => {
-    
+    fileExists(dbpath).then((res: boolean) => {
+        if ( res === false ) {
+            // create file
+        };
+        return;
+    });
 };
