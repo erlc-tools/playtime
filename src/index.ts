@@ -5,6 +5,7 @@ import { Logger } from "tslog";
 import * as dbhelper from "./dbhelper";
 
 // post-imports
+const log = new Logger();
 dotenv.config()
 
 // vars
@@ -16,7 +17,6 @@ var debug = false as boolean; // fuck compiler errors
 if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 
-const log = new Logger();
 
 log.info(`DEBUG IS ${debug}`)
 
