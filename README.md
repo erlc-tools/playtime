@@ -3,6 +3,4 @@
 *insert something here*
 
 <h3>Dependencies</h3>
-
-- `npm i erlc`
-- `npm i dotenv`
+*` read package.json`*
