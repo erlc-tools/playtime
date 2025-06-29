@@ -78,6 +78,7 @@ async function playerchecktask(): Promise<void> {
 	players = dbhelper.massPtoID(massSPtoP(tmp))
 
 	// log them
+	if (debug) {log.debug(["these players were found in game: ", players])};
 	players.forEach((uid: number) => {
 		dbhelper.dblog(uid, interval)
 	})
