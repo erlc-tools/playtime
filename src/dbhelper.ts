@@ -32,6 +32,7 @@ type Intervallog = {
 };
 
 type PlaytimeDB = {
+    t: Userlog | Intervallog, // type
     u: Userlog | undefined,
     i: Intervallog | undefined
 };
@@ -64,5 +65,5 @@ export async function checkdbfile(): Promise<void> {
 };
 
 export async function dblog(uid: number, interval: number) {
-    
+    //check if interval var matches
 }
