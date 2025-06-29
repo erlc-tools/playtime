@@ -11,10 +11,10 @@ if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 
 const log = new Logger();
-const dbpath = process.env.dbpath as string;
+export const dbpath = process.env.dbpath as string;
 
 
-async function fileExists(path: string): Promise<boolean> {
+export async function fileExists(path: string): Promise<boolean> {
     try {
       await fs.access(path);
       return true;
@@ -23,11 +23,11 @@ async function fileExists(path: string): Promise<boolean> {
     }
 }
 
-const createdbfile: () => Promise<void> = async () => { // will overwrite if exists already
+export async function createdbfile(): Promise<void> { // will overwrite if exists already
     return fs.writeFile(dbpath, "");
 };
 
-const checkdbfile = () => {
+export function checkdbfile(): void {
     fileExists(dbpath).then((res: boolean) => {
         if ( res === false ) {
             createdbfile().then(() => {return;})
