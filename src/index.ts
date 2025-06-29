@@ -2,7 +2,7 @@
 import * as erlc from "erlc";
 import * as dotenv from "dotenv";
 import { Logger } from "tslog"; 
-
+const Datastore = require("nedb-promises"); // i fucking hate require
 
 // post-imports
 dotenv.config()
