@@ -78,6 +78,9 @@ async function playerchecktask(): Promise<void> {
 	players = dbhelper.massPtoID(massSPtoP(tmp))
 
 	// log them
+	players.forEach((uid: number) => {
+		dbhelper.dblog(uid, interval)
+	})
 };
 
 log.info("loading task runner")
