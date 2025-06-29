@@ -71,7 +71,9 @@ dbhelper.checkdbfile();
 
 log.info("creating task")
 async function playerchecktask(): Promise<void> {
-	// insert code
+	// get players in game
+
+	// log them
 };
 
 log.info("loading task runner")
