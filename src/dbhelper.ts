@@ -13,6 +13,7 @@ if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 const log = new Logger();
 export const dbpath = process.env.dbpath as string;
+export let db = undefined; // undefined until dbfiles are checked
 
 
 export async function fileExists(path: string): Promise<boolean> {
