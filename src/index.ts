@@ -2,6 +2,7 @@
 import * as erlc from "erlc";
 import * as dotenv from "dotenv";
 import { Logger } from "tslog"; 
+const dbhelper = require("./dbhelper");
 
 // post-imports
 dotenv.config()
@@ -65,6 +66,8 @@ const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
 	return await erlc.getPlayers(token);
 };
 
+log.info("checking db file");
+dbhelper.checkdbfile();
 
 log.info("getting players")
 getPlayers().then((res: erlc.ServerPlayer[]) => {
