@@ -31,7 +31,7 @@ if (debug === true) {
 }
 
 
-type Player = {
+export type Player = {
 	name: string,
 	id: number
 }
