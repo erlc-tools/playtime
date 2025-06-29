@@ -13,7 +13,7 @@ if (debug_pre == "true") { const debug = true } else { const debug = false };
 
 const log = new Logger();
 export const dbpath = process.env.dbpath as string;
-export let db = undefined as undefined | Datastore<PlaytimeDB>; // undefined until dbfiles are checked
+export let db = undefined as undefined | Datastore<Userlog>; // undefined until dbfiles are checked
 
 if (process.env.interval) {
     const interval = parseInt(process.env.interval);
@@ -25,16 +25,6 @@ if (process.env.interval) {
 type Userlog = {
     id: number,
     times: number
-};
-
-type Intervallog = {
-    interval: number
-};
-
-type PlaytimeDB = {
-    t: "u" | "i", // type
-    uid: number | undefined,
-    data: Userlog | Intervallog | undefined,
 };
 
 export async function fileExists(path: string): Promise<boolean> {
@@ -64,34 +54,12 @@ export async function checkdbfile(): Promise<void> {
     return;
 };
 
-export function createIntervalLog(): Intervallog {
-    return {"interval": 1}; // placeholder (not finished)
-};
 
 export async function dblog(uid: number, interval: number) {
     if(!db) {
         log.fatal("db isnt defined yet");
         process.exit(1);
     };
-    //check if interval var matches
-    let ilog: Intervallog | undefined;
-    db.findOne({t: "i"}).then((res: PlaytimeDB | null) => {
-        if (res != null) { // make sure its not undefined
-            ilog = res.data as Intervallog;
-        } else {
-            ilog = undefined;
-        }
-    }, () => {
-        ilog = undefined; // if promise fails
-    })
-    if (!ilog) {
-        ilog = createIntervalLog();
-    };
-
-    if (ilog.interval != interval) { // actual check if it matches
-        log.fatal(`Datastore Interval is ${ilog.interval} while config interval is ${interval}. \nTruncate DB or change config interval to continue`)
-        process.exit(1)
-    }
 
     // check if uid already has a record
 };
