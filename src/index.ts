@@ -61,7 +61,7 @@ const massSPtoP = (SPs: erlc.ServerPlayer[]): Player[] => {
 };
 
 const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
-	if (debug) {log.info("hello from getPlayers")}
+	if (debug) {log.info("hello from getPlayers")};
 	return await erlc.getPlayers(token);
 };
 
