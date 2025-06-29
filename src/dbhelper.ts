@@ -4,6 +4,7 @@ import { Logger } from "tslog";
 import * as dotenv from "dotenv";
 import * as path from "path";
 import Datastore from 'nedb-promises'; 
+import { Player } from "./index";
 
 dotenv.config();
 const debug_pre = process.env.debug as string;
@@ -79,3 +80,11 @@ export async function dblog(uid: number, interval: number) {
         }
       });
 };
+
+export function massPtoID(Ps: Player[]): number[] {
+    let results = [] as number[]
+    Ps.forEach((item: Player) => {
+        results.push(item.id)
+    });
+    return results;
+}
