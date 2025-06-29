@@ -25,16 +25,17 @@ export async function fileExists(path: string): Promise<boolean> {
     }
 }
 
-export async function createdbfile(): Promise<void> { // will overwrite if exists already
+export function createdbfile(): void { // will overwrite if exists already
     if (debug === true) { log.debug("hello from createdbfile!") };
-    return fs.writeFile(dbpath, "");
+    fss.openSync(dbpath, "");
+    return;
 };
 
 export async function checkdbfile(): Promise<void> {
     if (debug === true) { log.debug("hello from checkdbfile!") };
     let res = await fileExists(dbpath);
     if ( res === false ) {
-        await createdbfile();
+        createdbfile();
     };
     return;
 };
