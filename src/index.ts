@@ -2,7 +2,7 @@
 import * as erlc from "erlc";
 import * as dotenv from "dotenv";
 import { Logger } from "tslog"; 
-const dbhelper = require("./dbhelper");
+import * as dbhelper from "./dbhelper";
 
 // post-imports
 dotenv.config()
@@ -72,6 +72,10 @@ dbhelper.checkdbfile();
 log.info("creating task")
 async function playerchecktask(): Promise<void> {
 	// get players in game
+	let players = [] as number[]
+	
+	var tmp = await getPlayers()
+	players = dbhelper.massPtoID(massSPtoP(tmp))
 
 	// log them
 };
@@ -89,6 +93,7 @@ if (process.env.interval) {
 } else {
 	interval = 5 // fallback fallback (idk)
 }
+log.info(`Interval is ${interval}`)
 
 playerchecktask()
 setInterval(() => {
