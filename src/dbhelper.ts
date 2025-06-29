@@ -3,7 +3,7 @@ import * as fss from "fs";
 import { Logger } from "tslog"; 
 import * as dotenv from "dotenv";
 import * as path from "path";
-const Datastore = require("nedb-promises"); // i fucking hate require
+import Datastore from 'nedb-promises'; 
 
 dotenv.config();
 const debug_pre = process.env.debug as string;
