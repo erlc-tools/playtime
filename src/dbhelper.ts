@@ -61,6 +61,7 @@ export async function createuserlog(uid: number): Promise<Userlog> {
 }
 
 export async function dblog(uid: number, interval: number) {
+    if (debug === true) { log.debug("hello from dblog!") };
     async function addtoulog(ulog: Userlog): Promise<void> {
         await db?.update({ id: uid }, { $set: { playtime: ulog.playtime + interval}})
     }
