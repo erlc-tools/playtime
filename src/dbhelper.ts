@@ -32,7 +32,7 @@ type Intervallog = {
 };
 
 type PlaytimeDB = {
-    t: Userlog | Intervallog, // type
+    t: "u" | "i", // type
     u: Userlog | undefined,
     i: Intervallog | undefined
 };
@@ -64,6 +64,18 @@ export async function checkdbfile(): Promise<void> {
     return;
 };
 
+export function createIntervalLog(): Intervallog {
+    return {"interval": 1}; // placeholder (not finished)
+}
+
 export async function dblog(uid: number, interval: number) {
+    if(!db) {
+        log.fatal("db isnt defined yet");
+        process.exit(1);
+    }
     //check if interval var matches
+    let ilog = db.findOne({t: "i"})
+    if (!ilog) {
+        createIntervalLog(); // sync
+    }
 }
