@@ -40,3 +40,7 @@ export async function checkdbfile(): Promise<void> {
     };
     return;
 };
+
+export async function dblog(uid: number, interval: number) {
+    
+}
