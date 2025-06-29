@@ -24,7 +24,7 @@ if (process.env.interval) {
 
 type Userlog = {
     id: number,
-    times: number
+    playtime: number
 };
 
 export async function fileExists(path: string): Promise<boolean> {
@@ -54,12 +54,28 @@ export async function checkdbfile(): Promise<void> {
     return;
 };
 
+export async function createuserlog(uid: number): Promise<Userlog> {
+    // add to db, then return data
+    return {id: uid, playtime: 0} as Userlog
+}
 
 export async function dblog(uid: number, interval: number) {
+    async function addtoulog(ulog: Userlog): Promise<void> {
+        await db?.update({ id: uid }, { $set: { playtime: ulog.playtime + interval}})
+    }
     if(!db) {
         log.fatal("db isnt defined yet");
         process.exit(1);
     };
 
     // check if uid already has a record
+    let record: Userlog
+    db.findOne({ id: uid }).then( async (res: Userlog | null) => {
+        if (res !== null) {
+          record = res;
+          addtoulog(record);
+        } else {
+            record = await createuserlog(uid);
+        }
+      });
 };
