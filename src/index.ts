@@ -25,7 +25,7 @@ const client = new erlc.Client({
 });
 client.config(); // save options
 
-if (debug === false) {
+if (debug === true) {
 	log.info(["tkn passed in=", token])
 }
 
