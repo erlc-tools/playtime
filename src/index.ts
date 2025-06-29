@@ -90,6 +90,7 @@ if (process.env.interval) {
 	interval = 5 // fallback fallback (idk)
 }
 
+playerchecktask()
 setInterval(() => {
   playerchecktask().catch(console.error);
 }, interval * 60 * 1000);
