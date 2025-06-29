@@ -29,12 +29,11 @@ export async function createdbfile(): Promise<void> { // will overwrite if exist
     return fs.writeFile(dbpath, "");
 };
 
-export function checkdbfile(): void {
+export async function checkdbfile(): Promise<void> {
     if (debug === true) { log.debug("hello from checkdbfile!") };
-    fileExists(dbpath).then((res: boolean) => {
-        if ( res === false ) {
-            createdbfile().then(() => {return;})
-        };
-        return;
-    });
+    let res = await fileExists(dbpath);
+    if ( res === false ) {
+        await createdbfile();
+    };
+    return;
 };
