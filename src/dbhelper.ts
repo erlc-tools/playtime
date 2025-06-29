@@ -15,6 +15,13 @@ const log = new Logger();
 export const dbpath = process.env.dbpath as string;
 export let db = undefined as undefined | Datastore<PlaytimeDB>; // undefined until dbfiles are checked
 
+if (process.env.interval) {
+    const interval = parseInt(process.env.interval);
+} else {
+    log.fatal("parsing int of interval failed");
+    process.exit(1);
+}
+
 type Userlog = {
     id: number,
     times: number
