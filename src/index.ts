@@ -41,7 +41,7 @@ const SPtoP = (SP: erlc.ServerPlayer): Player => {
 	let id = 0 as number;
 
 	name = SP.Player.split(":")[0] as string
-	id = parseInt(SP.Player.split(":")[0]) as number
+	id = parseInt(SP.Player.split(":")[1]) as number
 
 	const playerobj = {name: name, id: id} as Player;
 	return playerobj;
