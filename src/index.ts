@@ -69,7 +69,12 @@ const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
 log.info("checking db file");
 dbhelper.checkdbfile();
 
-log.info("getting players")
-getPlayers().then((res: erlc.ServerPlayer[]) => {
-	log.info(massSPtoP(res));
-})
+log.info("creating task")
+async function playerchecktask(): Promise<void> {
+	// insert code
+};
+
+log.info("loading task runner")
+setInterval(() => {
+  playerchecktask().catch(console.error);
+}, 5 * 60 * 1000);
