@@ -9,7 +9,7 @@ import { Player } from "./index";
 dotenv.config();
 const debug_pre = process.env.debug as string;
 var debug = false as boolean; // fuck compiler errors
-if (debug_pre == "true") { const debug = true } else { const debug = false };
+if (debug_pre == "true") { debug = true } else { debug = false };
 
 
 const log = new Logger();
