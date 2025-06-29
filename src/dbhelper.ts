@@ -76,6 +76,6 @@ export async function dblog(uid: number, interval: number) {
     //check if interval var matches
     let ilog = db.findOne({t: "i"}) as Promise<Intervallog>;
     if (!ilog) {
-        ilog = createIntervalLog(); // sync
+        ilog = createIntervalLog();
     }
 }
