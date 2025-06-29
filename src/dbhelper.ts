@@ -33,6 +33,7 @@ type Intervallog = {
 
 type PlaytimeDB = {
     t: "u" | "i", // type
+    uid: number | undefined,
     data: Userlog | Intervallog | undefined,
 };
 
