@@ -33,8 +33,7 @@ type Intervallog = {
 
 type PlaytimeDB = {
     t: "u" | "i", // type
-    u: Userlog | undefined,
-    i: Intervallog | undefined
+    data: Userlog | Intervallog | undefined,
 };
 
 export async function fileExists(path: string): Promise<boolean> {
@@ -77,7 +76,7 @@ export async function dblog(uid: number, interval: number) {
     let ilog: Intervallog | undefined;
     db.findOne({t: "i"}).then((res: PlaytimeDB | null) => {
         if (res != null) { // make sure its not undefined
-            ilog = res.i as Intervallog;
+            ilog = res.data as Intervallog;
         } else {
             ilog = undefined;
         }
@@ -92,4 +91,6 @@ export async function dblog(uid: number, interval: number) {
         log.fatal(`Datastore Interval is ${ilog.interval} while config interval is ${interval}. \nTruncate DB or change config interval to continue`)
         process.exit(1)
     }
+
+    // check if uid already has a record
 };
