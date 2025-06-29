@@ -87,4 +87,9 @@ export async function dblog(uid: number, interval: number) {
     if (!ilog) {
         ilog = createIntervalLog();
     };
+
+    if (ilog.interval != interval) { // actual check if it matches
+        log.fatal(`Datastore Interval is ${ilog.interval} while config interval is ${interval}. \nTruncate DB or change config interval to continue`)
+        process.exit(1)
+    }
 };
