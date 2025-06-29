@@ -15,6 +15,7 @@ export const dbpath = process.env.dbpath as string;
 
 
 export async function fileExists(path: string): Promise<boolean> {
+    if (debug === true) { log.debug("hello from fileExists!") };
     try {
       await fs.access(path);
       return true;
@@ -24,10 +25,12 @@ export async function fileExists(path: string): Promise<boolean> {
 }
 
 export async function createdbfile(): Promise<void> { // will overwrite if exists already
+    if (debug === true) { log.debug("hello from createdbfile!") };
     return fs.writeFile(dbpath, "");
 };
 
 export function checkdbfile(): void {
+    if (debug === true) { log.debug("hello from checkdbfile!") };
     fileExists(dbpath).then((res: boolean) => {
         if ( res === false ) {
             createdbfile().then(() => {return;})
