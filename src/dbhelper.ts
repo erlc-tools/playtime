@@ -23,10 +23,14 @@ async function fileExists(path: string): Promise<boolean> {
     }
 }
 
+const createdbfile: () => Promise<void> = async () => { // will overwrite if exists already
+    return fs.writeFile(dbpath, "");
+};
+
 const checkdbfile = () => {
     fileExists(dbpath).then((res: boolean) => {
         if ( res === false ) {
-            // create file
+            createdbfile().then(() => {return;})
         };
         return;
     });
