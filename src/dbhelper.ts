@@ -1,4 +1,5 @@
 import { promises as fs } from "fs";
+import * as fss from "fs";
 import { Logger } from "tslog"; 
 import * as dotenv from "dotenv";
 import * as path from "path";
