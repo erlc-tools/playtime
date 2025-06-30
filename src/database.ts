@@ -35,7 +35,13 @@ export async function getFromID(i: DBinfo, uid: number): Promise<number | null> 
 };
 
 export async function writeToID(i: DBinfo, uid: number, newnum: number): Promise<void> {
-    return;
+    var old = await _getjson(i.filepath);
+    if (!old) {
+        i.logger.fatal("_getjson returned undefined in writeToID")
+        process.exit(1)
+    }
+    old[uid] = newnum
+    await _writejson(i.filepath, old)
 }
 
 export async function doesExist(i: DBinfo, uid: number): Promise<boolean> {
