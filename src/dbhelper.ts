@@ -3,7 +3,7 @@ import * as fss from "fs";
 import { Logger } from "tslog"; 
 import * as dotenv from "dotenv";
 import * as path from "path";
-import Datastore from 'nedb-promises'; 
+import { getFromID, writeToID, doesExist } from './database'; 
 import { Player } from "./index";
 
 dotenv.config();
@@ -14,7 +14,6 @@ if (debug_pre == "true") { debug = true } else { debug = false };
 
 const log = new Logger();
 export const dbpath = process.env.dbpath as string;
-export let db = undefined as undefined | Datastore<Userlog>; // undefined until dbfiles are checked
 
 if (process.env.interval) {
     const interval = parseInt(process.env.interval);
@@ -23,10 +22,10 @@ if (process.env.interval) {
     process.exit(1);
 }
 
-export type Userlog = {
-    id: number,
-    playtime: number
-};
+export type PlaytimeLog = {
+    number: number // id: playtime
+}
+export type Database = PlaytimeLog[];
 
 export async function fileExists(path: string): Promise<boolean> {
     if (debug === true) { log.debug("hello from fileExists!") };
@@ -51,35 +50,18 @@ export async function checkdbfile(): Promise<void> {
     if ( res === false ) {
         createdbfile();
     };
-    db = Datastore.create(dbpath)
     return;
 };
 
-export async function createuserlog(uid: number): Promise<Userlog> {
-    // add to db, then return data
-    return {id: uid, playtime: 0} as Userlog
-}
 
 export async function dblog(uid: number, interval: number) {
     if (debug === true) { log.debug("hello from dblog!") };
-    async function addtoulog(ulog: Userlog): Promise<void> {
-        await db?.update({ id: uid }, { $set: { playtime: ulog.playtime + interval}})
-    }
-    if(!db) {
-        log.fatal("db isnt defined yet");
-        process.exit(1);
-    };
 
     // check if uid already has a record
-    let record: Userlog
-    db.findOne({ id: uid }).then( async (res: Userlog | null) => {
-        if (res !== null) {
-          record = res;
-          addtoulog(record);
-        } else {
-            record = await createuserlog(uid);
-        }
-      });
+    
+    // if not, create on
+
+    // add interval to it
 };
 
 export function massPtoID(Ps: Player[]): number[] {
