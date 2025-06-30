@@ -44,7 +44,3 @@ export async function writeToID(i: DBinfo, uid: number, newnum: number): Promise
     await _writejson(i.filepath, old)
 }
 
-export async function doesExist(i: DBinfo, uid: number): Promise<boolean> {
-    return false;
-}
-
