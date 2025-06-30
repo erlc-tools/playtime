@@ -29,9 +29,9 @@ async function _getjson(path: string): Promise<Record<any, any> | undefined> {
 }
 
 export async function getFromID(i: DBinfo, uid: number): Promise<number | null> {
-    const json = await _getjson(i.filepath);// who doesnt
-    if (!json) return null;                 // fucking love
-    return json[uid] ?? null;               // chat gpt
+    const json = await _getjson(i.filepath);  // who doesnt
+    if (!json) return null;                   // fucking love
+    return json[uid] ?? null;//uid may be str!// chat gpt
 };
 
 export async function writeToID(i: DBinfo, uid: number, newnum: number): Promise<void> {
