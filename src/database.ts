@@ -1,7 +1,6 @@
 // database module
 import { readFile, writeFileSync } from 'fs'; // writefile is sync to prevent writing multiple times at once
 import { Logger, ILogObj } from "tslog";
-import { Userlog } from './dbhelper';
 
 type DBinfo = {
     filepath: string,
