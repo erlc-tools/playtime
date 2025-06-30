@@ -2,7 +2,7 @@
 import { readFile, writeFileSync } from 'fs'; // writefile is sync to prevent writing multiple times at once
 import { Logger, ILogObj } from "tslog";
 
-type DBinfo = {
+export type DBinfo = {
     filepath: string,
     logger: Logger<ILogObj>,
     debug: boolean
