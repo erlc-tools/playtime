@@ -3,7 +3,7 @@ import * as fss from "fs";
 import { Logger } from "tslog"; 
 import * as dotenv from "dotenv";
 import * as path from "path";
-import { getFromID, writeToID, doesExist } from './database'; 
+import * as ptdb from './database'; 
 import { Player } from "./index";
 
 dotenv.config();
@@ -14,6 +14,12 @@ if (debug_pre == "true") { debug = true } else { debug = false };
 
 const log = new Logger();
 export const dbpath = process.env.dbpath as string;
+
+export const dbi = {
+    filepath: dbpath,
+    logger: log,
+    debug: debug
+} as ptdb.DBinfo
 
 if (process.env.interval) {
     const interval = parseInt(process.env.interval);
@@ -58,7 +64,7 @@ export async function dblog(uid: number, interval: number) {
     if (debug === true) { log.debug("hello from dblog!") };
 
     // check if uid already has a record
-    
+
     // if not, create on
 
     // add interval to it
