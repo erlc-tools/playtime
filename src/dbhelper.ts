@@ -63,11 +63,14 @@ export async function checkdbfile(): Promise<void> {
 export async function dblog(uid: number, interval: number) {
     if (debug === true) { log.debug("hello from dblog!") };
 
-    // check if uid already has a record
+    // get old playtime
+    var playtime = await ptdb.getFromID(dbi, uid);
+    if (typeof playtime !== "number") {
+        playtime = 0;
+    }
 
-    // if not, create on
 
-    // add interval to it
+    ptdb.writeToID(dbi, uid, playtime + interval);
 };
 
 export function massPtoID(Ps: Player[]): number[] {
