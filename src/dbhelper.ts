@@ -46,7 +46,8 @@ export async function fileExists(path: string): Promise<boolean> {
 export function createdbfile(): void { // will overwrite if exists already
     if (debug === true) { log.debug("hello from createdbfile!") };
     fss.mkdirSync(path.dirname(dbpath), { recursive: true });
-    fss.openSync(dbpath, "w");
+    const f = fss.openSync(dbpath, "w");
+    fss.writeSync(f, "{}")
     return;
 };
 
