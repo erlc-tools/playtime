@@ -1,7 +1,7 @@
-<h1 align="center">playtime</h1>
-<p align="center"><strong>Log playtime in ER:LC using the PRC Private Server API</strong></p>
-
-<p align="center">A simple Node.js system to track and store user playtime — fast, lightweight, and source-visible.</p>
+<p align="center">
+  <img src="assets/tools.png" alt="Logo" width="450">
+</p>
+<p align="center"><strong>💪Log playtime in ER:LC using the PRC Private Server API</strong></p>
 
 ---
 
@@ -9,8 +9,33 @@
 
 Clone the repository and install dependencies:
 
-```bash
-git clone https://github.com/your-username/playtime.git
+```batch
+git clone [https://github.com/fin-github/playtime.git](https://github.com/erlc-tools/playtime.git)
 cd playtime
 npm install
+```
+
+---
+### ⚙️ Build
+```bash
+npx build
+```
+
+---
+### 💾Configure .env
+**Windows:**
+```batch
+copy .env.template .env
+```
+**Unix (linux)**
+```bash
+cp .env.template .env
+```
+**⚠️Configure .env to your liking**
+
+---
+### 🚀Run
+```batch
+npx build
+npx start
 ```
