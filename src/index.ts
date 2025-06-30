@@ -3,9 +3,10 @@ import * as erlc from "erlc";
 import * as dotenv from "dotenv";
 import { Logger } from "tslog"; 
 import * as dbhelper from "./dbhelper";
+import { massSPtoP, SPtoP, massPtoID } from "./conversion";
 
 // post-imports
-const log = new Logger();
+export const log = new Logger();
 dotenv.config()
 
 // vars
@@ -14,7 +15,7 @@ const token = process.env.tkn as string
 
 // debug var setup
 const debug_pre = process.env.debug as string;
-var debug = false as boolean; // fuck compiler errors
+export var debug = false as boolean; // fuck compiler errors
 if (debug_pre == "true") { debug = true } else { debug = false };
 
 
@@ -37,30 +38,6 @@ export type Player = {
 	id: number
 }
 
-const SPtoP = (SP: erlc.ServerPlayer): Player => {
-	if (debug) {log.info("hello from SPtoP")}
-	let name = "" as string;
-	let id = 0 as number;
-
-	name = SP.Player.split(":")[0] as string
-	id = parseInt(SP.Player.split(":")[1]) as number
-
-	const playerobj = {name: name, id: id} as Player;
-	return playerobj;
-};
-
-const massSPtoP = (SPs: erlc.ServerPlayer[]): Player[] => {
-	if (debug) {log.info("hello from massSPtoP")};
-
-	var temp: Player[] = [];
-
-	if (debug) {log.debug(["massSPtoP vars & args", SPs, temp])};
-
-	SPs.forEach(item => {
-		temp.push(SPtoP(item));
-	});
-	return temp;
-};
 
 const getPlayers = async (): Promise<erlc.ServerPlayer[]> => {
 	if (debug) {log.info("hello from getPlayers")};
@@ -76,7 +53,7 @@ async function playerchecktask(): Promise<void> {
 	let players = [] as number[]
 	
 	var tmp = await getPlayers()
-	players = dbhelper.massPtoID(massSPtoP(tmp))
+	players = massPtoID(massSPtoP(tmp))
 
 	// log them
 	if (debug) {log.debug(["these players were found in game: ", players])};

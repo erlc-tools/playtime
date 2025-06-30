@@ -72,11 +72,3 @@ export async function dblog(uid: number, interval: number) {
 
     ptdb.writeToID(dbi, uid, playtime + interval);
 };
-
-export function massPtoID(Ps: Player[]): number[] {
-    let results = [] as number[]
-    Ps.forEach((item: Player) => {
-        results.push(item.id)
-    });
-    return results;
-}
