@@ -1,7 +1,7 @@
 import { Player, debug, log} from ".";
 import * as erlc from "erlc";
 
-export function massPtoID(Ps: Player[]): number[] {
+export function massPtoID(Ps: Player[]): number[] { // (MASS) type Player -> number (Player.id)
     let results = [] as number[]
     Ps.forEach((item: Player) => {
         results.push(item.id)
@@ -9,7 +9,7 @@ export function massPtoID(Ps: Player[]): number[] {
     return results;
 }
 
-export function SPtoP(SP: erlc.ServerPlayer): Player {
+export function SPtoP(SP: erlc.ServerPlayer): Player { // (NON-MASS) type erlc.ServerPlayer -> type Player
     if (debug) {log.info("hello from SPtoP")}
     let name = "" as string;
     let id = 0 as number;
@@ -21,7 +21,7 @@ export function SPtoP(SP: erlc.ServerPlayer): Player {
     return playerobj;
 };
 
-export function massSPtoP(SPs: erlc.ServerPlayer[]): Player[] {
+export function massSPtoP(SPs: erlc.ServerPlayer[]): Player[] { // (MASS) type erlc.ServerPlayer -> type Player
     if (debug) {log.info("hello from massSPtoP")};
 
     var temp: Player[] = [];
