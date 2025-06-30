@@ -23,7 +23,7 @@ if (process.env.interval) {
     process.exit(1);
 }
 
-type Userlog = {
+export type Userlog = {
     id: number,
     playtime: number
 };
