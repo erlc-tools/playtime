@@ -3,6 +3,9 @@
 </p>
 <p align="center"><strong>💪Log playtime in ER:LC using the PRC Private Server API</strong></p>
 
+<p align="center">
+  <img src="https://www.codefactor.io/repository/github/erlc-tools/playtime/badge" alt="Playtime Codefactor Rating" width="100">
+</p>
 ---
 
 ### 📦 Installation
